@@ -28,7 +28,7 @@
         }
         FACILITIES {
             int id pk
-            int nearby_charger_id fk
+            int station_id fk
             string name
             point location
             string type
@@ -78,6 +78,6 @@
         CHARGERS |{--|| STATIONS : has
         STAFF ||--|| ADDRESS : has
         PROVIDERS ||--|| ADDRESS : has
-        CAR_MODEL_CONNECTOR_TYPE ||--|| CAR_MODELS : has
-        CAR_MODEL_CONNECTOR_TYPE ||--|| CONNECTOR_TYPES : has
+        CAR_MODEL_CONNECTOR_TYPE |{--|| CAR_MODELS : has
+        CAR_MODEL_CONNECTOR_TYPE |{--|| CONNECTOR_TYPES : has
 ```     
