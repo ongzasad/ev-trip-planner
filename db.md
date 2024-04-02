@@ -40,7 +40,6 @@
             string name
             double price
             int charging_speed
-            string connector_type
             string status
         }
         STATIONS {
