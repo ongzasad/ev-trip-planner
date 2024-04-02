@@ -19,10 +19,8 @@
             int id pk
             int brand_id fk
             string name
-            string type
             double battery_capacity
             double battery_range
-            string connector_type
         }
         CAR_BRAND {
             int id pk
@@ -38,9 +36,9 @@
         }
         CHARGERS {
             int id pk
+            int connector_id fk
             string name
             double price
-            string type
             int charging_speed
             string connector_type
             string status
@@ -53,7 +51,7 @@
             double rating
         }
         ADDRESS {
-            int id
+            int id pk
             string name
             string postal_code
             string country
@@ -63,7 +61,16 @@
             string street
             string house_no
         }
-
+        CONNECTOR_TYPES {
+            int id pk
+            string name
+            string type
+        }
+        CAR_MODEL_CONNECTOR_TYPE {
+            int id pk
+            int car_model_id fk
+            int connector_id fk
+        }
         STAFF o{--|| PROVIDERS : contains
         STATIONS |{--|| PROVIDERS : contains
         CAR_MODELS |{--|| CAR_BRAND : has
@@ -71,4 +78,6 @@
         CHARGERS |{--|| STATIONS : has
         STAFF ||--|| ADDRESS : has
         PROVIDERS ||--|| ADDRESS : has
+        CAR_MODEL_CONNECTOR_TYPE ||--|| CAR_MODELS : has
+        CAR_MODEL_CONNECTOR_TYPE ||--|| CONNECTOR_TYPES : has
 ```     
