@@ -4,6 +4,7 @@
         STAFF {
             int id pk
             int provider_id fk
+            string name
             string address
             string mobile
             string citizen_id
@@ -26,8 +27,6 @@
         CAR_BRAND {
             int id pk
             string name
-            string address
-            string mobile
         }
         FACILITIES {
             int id pk
@@ -39,23 +38,24 @@
         }
         CHARGERS {
             int id pk
-            int provider_id fk
             string name
-            double rating
-            point location
             double price
-            double ac_speed
-            double dc_speed
-            boolean is_ac
-            boolean is_dc
+            string type
+            int charging_speed
             string connector_type
             string status
-            int amount
-            int number_of_available
+        }
+        STATIONS {
+            int id pk
+            int provider_id fk
+            string name
+            point location
+            double rating
         }
 
         STAFF o{--|| PROVIDERS : contains
-        CHARGERS |{--|| PROVIDERS : contains
+        STATIONS |{--|| PROVIDERS : contains
         CAR_MODELS |{--|| CAR_BRAND : has
-        CHARGERS ||--o{ FACILITIES : has
+        STATIONS ||--o{ FACILITIES : has
+        CHARGERS |{--|| STATIONS : has
 ```     
