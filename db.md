@@ -56,5 +56,5 @@
         STAFF o{--|| PROVIDERS : contains
         CHARGERS |{--|| PROVIDERS : contains
         CAR_MODELS |{--|| CAR_BRAND : has
-        CHARGERS ||--|{ FACILITIES : has
+        CHARGERS ||--o{ FACILITIES : has
 ```     
