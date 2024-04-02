@@ -39,6 +39,7 @@
         }
         CHARGERS {
             int id pk
+            int provider_id fk
             string name
             double rating
             point location
