@@ -34,6 +34,7 @@
             array operation_time
         }
         FACILITIES_STATIONS {
+            int id pk
             int facility_id fk
             int station_id fk
         }
