@@ -33,6 +33,7 @@
             point location
             string type
             float rating
+            array operation_time
         }
         CHARGERS {
             int id pk
@@ -41,6 +42,7 @@
             double price
             int charging_speed
             string status
+            array operation_time
         }
         STATIONS {
             int id pk
