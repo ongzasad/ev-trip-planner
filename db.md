@@ -28,12 +28,16 @@
         }
         FACILITIES {
             int id pk
-            int station_id fk
+            int facility_station_id fk
             string name
             point location
             string type
             float rating
             array operation_time
+        }
+        FACILITIES_STATIONS {
+            int facility_id fk
+            int station_id fk
         }
         CHARGERS {
             int id pk
@@ -47,6 +51,7 @@
         STATIONS {
             int id pk
             int provider_id fk
+            int facility_station_id fk
             string name
             point location
             double rating
@@ -75,7 +80,8 @@
         STAFF o{--|| PROVIDERS : contains
         STATIONS |{--|| PROVIDERS : contains
         CAR_MODELS |{--|| CAR_BRAND : has
-        STATIONS ||--o{ FACILITIES : has
+        STATIONS ||--o{ FACILITIES_STATIONS : has
+        FACILITIES ||--o{ FACILITIES_STATIONS : has
         CHARGERS |{--|| STATIONS : has
         STAFF ||--|| ADDRESS : has
         PROVIDERS ||--|| ADDRESS : has
