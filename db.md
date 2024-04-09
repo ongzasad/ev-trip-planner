@@ -26,7 +26,6 @@
         }
         FACILITIES {
             int id pk
-            int facility_station_id fk
             string name
             point location
             string type
@@ -50,7 +49,6 @@
         STATIONS {
             int id pk
             int provider_id fk
-            int facility_station_id fk
             string name
             point location
             double rating
