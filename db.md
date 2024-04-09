@@ -1,13 +1,11 @@
 
 ```mermaid
-        erDiagram
+    erDiagram
         STAFF {
             int id pk
             int provider_id fk
-            int address_id fk
             string name
             string mobile
-            string citizen_id
         }
         PROVIDERS {
             int id pk
@@ -83,7 +81,6 @@
         STATIONS ||--o{ FACILITIES_STATIONS : has
         FACILITIES ||--o{ FACILITIES_STATIONS : has
         CHARGERS |{--|| STATIONS : has
-        STAFF ||--|| ADDRESS : has
         PROVIDERS ||--|| ADDRESS : has
         CAR_MODEL_CONNECTOR_TYPE |{--|| CAR_MODELS : has
         CAR_MODEL_CONNECTOR_TYPE |{--|| CONNECTOR_TYPES : has
