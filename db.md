@@ -6,10 +6,12 @@
             int provider_id fk
             string name
             string mobile
+            string email
+            password password
+
         }
         PROVIDERS {
             int id pk
-            int address_id fk
             string name
             string mobile
         }
@@ -53,17 +55,6 @@
             point location
             double rating
         }
-        ADDRESS {
-            int id pk
-            string name
-            string postal_code
-            string country
-            string province
-            string district
-            string subdistrict
-            string street
-            string house_no
-        }
         CONNECTOR_TYPES {
             int id pk
             string name
@@ -74,14 +65,37 @@
             int car_model_id fk
             int connector_id fk
         }
+        USERS {
+            int id pk
+            string email
+            password password
+            string name
+            string surname
+            date register_date
+            string status
+        }
+        LOGS {
+            int id pk
+            int user_id
+            date timestamp
+            string action
+            string message
+        }
+        USER_CAR_MODELS {
+            int id pk
+            int user_id fk
+            int car_model_id fk
+        }
         STAFF o{--|| PROVIDERS : contains
         STATIONS |{--|| PROVIDERS : contains
         CAR_MODELS |{--|| CAR_BRAND : has
         STATIONS ||--o{ FACILITIES_STATIONS : has
         FACILITIES ||--o{ FACILITIES_STATIONS : has
         CHARGERS |{--|| STATIONS : has
-        PROVIDERS ||--|| ADDRESS : has
         CAR_MODEL_CONNECTOR_TYPE |{--|| CAR_MODELS : has
         CAR_MODEL_CONNECTOR_TYPE |{--|| CONNECTOR_TYPES : has
         CHARGERS ||--|| CONNECTOR_TYPES : contains
-```     
+        USERS ||--o{ LOGS : has
+        USERS ||--o{ USER_CAR_MODELS: has
+        CAR_MODELS ||--o{ USER_CAR_MODELS: has
+```
