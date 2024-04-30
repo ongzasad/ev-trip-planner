@@ -2,15 +2,18 @@
   sequenceDiagram
       actor User
       User->>+Application EV planing: Input Starting Point, Destination and Preferences
-      Application EV planing->>+Backend: Call API POST for collect data
-      Backend->>+DB: Collect data (Starting Point, Destination and Preferences)
-      Backend-->>-Application EV planing: Return success/not success
-      Application EV planing->>+Backend: Call API calculate route
-      Backend->>+Google service: Call API Google to send desdestination (Data Starting Point, Destination and Preferences)
-      Google service-->>-Backend: Return route(s)
-      Backend->>+DB: Retrieve data (vehicle's range data, Preferences and station charing)
-      DB-->>-Backend: Send 
-      Backend->>+Backend: Choose the best route(s) with user's condition for user
-      Backend-->>-Application EV planing: Return route(s) list/No route
-      Application EV planing-->>-User: Display route(s)
+      Application EV planing->>+Car: Pull car data
+      Car-->>-Application EV planing: Car data
+      Application EV planing->>+Backend: Call API for calculate initial route
+      Backend->>+Google service: Call API for initial route (Send Starting Point and Destination)
+      Google service-->>+Backend: Initial route
+      Backend->>+Backend: Calculate route segmentation
+      Backend->>+DB: Find charger around route segment
+      Backend->>+Backend: Calculate chargers score
+      Backend->>+Google service: Calculate route (Send Starting point, selected charger(s) and Destination)
+      Google service-->>+Backend: Routes
+      Backend->>+Application EV planing: Routes
+      Application EV planing->>+User: Display routes
+      User->>+Application EV planing: Select route
+      Application EV planing-->>-User: Navigate
 ```
